@@ -7,3 +7,12 @@ Run the scripts inside the devcontainer:
 - `run_header_working.sh`
 - `run_module_failing.sh`
 - `run_module_working.sh`
+
+Or use the GNUmakefile:
+
+```bash
+make -n
+make working
+make headeronly
+make failing
+```

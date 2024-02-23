@@ -59,3 +59,4 @@ robocin_cpp_executable(
   SRCS test_main.cpp
   DEPS header_lib::test_class
 )
+add_test(NAME test_main COMMAND test_main)

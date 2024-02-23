@@ -1,0 +1,83 @@
+{
+  "version": 7,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default user Config",
+      "description": "Default build using Ninja generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceParentDir}/build/${sourceDirName}",
+      "installDir": "${sourceParentDir}/stagedir",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": {
+          "type": "path",
+          "value": "${sourceParentDir}/stagedir"
+        },
+        "TEST_FORCING_MODULE_ERROR": "$penv{TEST_FORCING_MODULE_ERROR}",
+        "CMAKE_CXX_SCAN_FOR_MODULES": true,
+        "CMAKE_CXX_STANDARD": "23",
+        "CMAKE_BUILD_TYPE": "Release",
+        "BUILD_SHARED_LIBS": "NO"
+      },
+      "environment": {
+        "CPM_USE_LOCAL_PACKAGES": "NO",
+        "PATH": "$env{HOME}/.local/bin${pathListSep}$penv{PATH}"
+      },
+      "warnings": {
+        "deprecated": true,
+        "uninitialized": false
+      },
+      "trace": {
+        "mode": "off"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "install",
+      "configurePreset": "default",
+      "targets": [
+        "install"
+      ]
+    },
+    {
+      "name": "format",
+      "configurePreset": "default",
+      "targets": [
+        "fix-clang-format",
+        "fix-cmake-format"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "generators": [
+        "TGZ"
+      ]
+    }
+  ]
+}
