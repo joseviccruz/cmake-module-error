@@ -157,6 +157,11 @@ function(robocin_cpp_library)
 
     install(FILES ${CONFIG_HDR} DESTINATION "${config_install_path}")
   endforeach()
+
+  configure_file(${PROJECT_SOURCE_DIR}/../Config.cmake.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake @ONLY)
+  install(FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+          DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+  )
   #  - install library
   install(TARGETS ${ARG_NAME}
           EXPORT "${PROJECT_NAME}Targets"
@@ -170,7 +175,7 @@ function(robocin_cpp_library)
   #  - install CMake configuration files
   install(EXPORT "${PROJECT_NAME}Targets"
           NAMESPACE "${PROJECT_NAME}::"
-          FILE "${PROJECT_NAME}Config.cmake"
+          FILE "${PROJECT_NAME}Targets.cmake"
           DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
           CXX_MODULES_DIRECTORY cxx_modules
   )
