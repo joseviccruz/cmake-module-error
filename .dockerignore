@@ -1,0 +1,6 @@
+build/
+stagedir/
+.git/
+*~
+*.bak
+*.swp

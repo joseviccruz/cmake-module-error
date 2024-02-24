@@ -33,14 +33,22 @@ get_filename_component(PROJECT_PATH "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
 
 # find GTest installation
 # looks for GTest cmake config files installed by GTest's cmake installation.
-find_package(GTest CONFIG REQUIRED HINTS "/opt/googletest")
-message(STATUS "Using GTest: ${GTest_VERSION}")
+#XXX find_package(GTest CONFIG REQUIRED HINTS "/opt/googletest")
+#XXX message(STATUS "Using GTest: ${GTest_VERSION}")
+#XXX include(GoogleTest) # provided by CMake
 
-include(GoogleTest) # provided by CMake
+include(../CPM.cmake)
+CPMAddPackage(
+  NAME GTest
+  GITHUB_REPOSITORY google/googletest
+  GIT_TAG v1.14.0
+  VERSION 1.14.0
+  OPTIONS "INSTALL_GTEST ON"
+)
 
 ########################################################################################################################
 
-include(./../helpers.cmake)
+include(../helpers.cmake)
 
 ########################################################################################################################
 

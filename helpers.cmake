@@ -16,6 +16,7 @@ endfunction()
 ########################################################################################################################
 
 enable_testing()
+include(GNUInstallDirs) # provided by CMake
 
 # add cpp library
 # named parameters:
@@ -168,7 +169,7 @@ function(robocin_cpp_library)
           CXX_MODULES_BMI
           DESTINATION modules
           FILE_SET HEADERS
-          DESTINATION include
+          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
           FILE_SET CXX_MODULES
           DESTINATION modules
   )

@@ -2,13 +2,13 @@
 # FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu as setup-cpp-ubuntu
 FROM ubuntu:22.04 as setup-cpp-ubuntu
 
-ARG CMAKE_VERSION='3.28.1'
-ARG NINJA_VERSION='1.11.1'
+# ARG CMAKE_VERSION='3.28.1'
+# ARG NINJA_VERSION='1.11.1'
 
 # RUN apt update && apt upgrade -y
 RUN apt-get update -qq && \
     # install nodejs
-    apt-get install -y --no-install-recommends libgtest-dev nodejs npm && \
+    apt-get install -y --no-install-recommends git libgtest-dev nodejs npm && \
     # install setup-cpp
     npm install -g setup-cpp@v0.37.0 && \
     # install the compiler and tools
