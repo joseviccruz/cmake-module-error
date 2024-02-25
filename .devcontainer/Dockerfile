@@ -7,8 +7,8 @@ FROM ubuntu:22.04 as setup-cpp-ubuntu
 
 # RUN apt update && apt upgrade -y
 RUN apt-get update -qq && \
-    # install nodejs
-    apt-get install -y --no-install-recommends git libgtest-dev nodejs npm && \
+    # install git, nodejs, and npm
+    apt-get install -y --no-install-recommends git nodejs npm && \
     # install setup-cpp
     npm install -g setup-cpp@v0.37.0 && \
     # install the compiler and tools
