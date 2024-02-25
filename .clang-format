@@ -1,4 +1,5 @@
-Language: Cpp
+---
+# Language: Cpp
 
 UseTab: Never
 IndentWidth: 2

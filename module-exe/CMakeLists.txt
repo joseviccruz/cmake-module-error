@@ -33,29 +33,29 @@ get_filename_component(PROJECT_PATH "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
 
 # find GTest installation
 # looks for GTest cmake config files installed by GTest's cmake installation.
-find_package(GTest CONFIG REQUIRED HINTS "/opt/googletest")
-message(STATUS "Using GTest: ${GTest_VERSION}")
-
-include(GoogleTest) # provided by CMake
-
-########################################################################################################################
-
-include(./../helpers.cmake)
+#XXX find_package(GTest CONFIG REQUIRED HINTS "/opt/googletest")
+#XXX message(STATUS "Using GTest: ${GTest_VERSION}")
+#XXX include(GoogleTest) # provided by CMake
 
 ########################################################################################################################
 
-find_package(module_lib CONFIG)
+include(../helpers.cmake)
 
-if (NOT module_lib_FOUND)
-  message(FATAL_ERROR "run 'install.sh' on 'module-lib' folder.")
-endif ()
+########################################################################################################################
+
+find_package(module_lib CONFIG REQUIRED)
 
 message(STATUS "Using module_lib: '${module_lib_DIR}'")
 
 ########################################################################################################################
+enable_testing()
 
 robocin_cpp_executable(
-  NAME test_main
-  SRCS test_main.cpp
-  DEPS module_lib::test_class
+  NAME
+  test_main
+  SRCS
+  test_main.cpp
+  DEPS
+  module_lib::test_class
 )
+add_test(NAME test_main COMMAND test_main)

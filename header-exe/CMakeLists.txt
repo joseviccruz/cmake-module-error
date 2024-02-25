@@ -33,29 +33,29 @@ get_filename_component(PROJECT_PATH "${CMAKE_CURRENT_LIST_DIR}" ABSOLUTE)
 
 # find GTest installation
 # looks for GTest cmake config files installed by GTest's cmake installation.
-find_package(GTest CONFIG REQUIRED HINTS "/opt/googletest")
-message(STATUS "Using GTest: ${GTest_VERSION}")
+#XXX find_package(GTest CONFIG REQUIRED HINTS "/opt/googletest")
 
-include(GoogleTest) # provided by CMake
-
-########################################################################################################################
-
-include(./../helpers.cmake)
+# message(STATUS "Using GTest: ${GTest_VERSION}")
+# include(GoogleTest) # provided by CMake
 
 ########################################################################################################################
 
-find_package(header_lib CONFIG)
+include(../helpers.cmake)
 
-if (NOT header_lib_FOUND)
-  message(FATAL_ERROR "run 'install.sh' on 'header-lib' folder.")
-endif ()
+########################################################################################################################
+
+find_package(header_lib CONFIG REQUIRED)
 
 message(STATUS "Using header_lib: '${header_lib_DIR}'")
 
 ########################################################################################################################
 
 robocin_cpp_executable(
-  NAME test_main
-  SRCS test_main.cpp
-  DEPS header_lib::test_class
+  NAME
+  test_main
+  SRCS
+  test_main.cpp
+  DEPS
+  header_lib::test_class
 )
+add_test(NAME test_main COMMAND test_main)
