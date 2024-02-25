@@ -24,10 +24,12 @@
         "CMAKE_CXX_SCAN_FOR_MODULES": true,
         "CMAKE_CXX_STANDARD": "23",
         "CMAKE_BUILD_TYPE": "Release",
-        "CPM_USE_LOCAL_PACKAGES": false,
         "BUILD_SHARED_LIBS": "NO"
       },
       "environment": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "CPM_USE_LOCAL_PACKAGES": "YES",
+        "CPM_SOURCE_CACHE": "$env{HOME}/.cache/CPM",
         "PATH": "$env{HOME}/.local/bin${pathListSep}$penv{PATH}"
       },
       "warnings": {
