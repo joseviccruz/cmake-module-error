@@ -7,7 +7,7 @@ Checks: >
   cert-*, -cert-err33-c,
   clang-analyzer-*,
   concurrency-*,
-  cppcoreguidelines-*, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers,
+  cppcoreguidelines-*, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers,-cppcoreguidelines-macro-usage,
   darwin-*,
   google-*,
   hicpp-*,

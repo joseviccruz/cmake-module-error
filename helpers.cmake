@@ -16,6 +16,7 @@ endfunction()
 ########################################################################################################################
 
 enable_testing()
+include(GNUInstallDirs) # provided by CMake
 
 # add cpp library
 # named parameters:
@@ -157,20 +158,25 @@ function(robocin_cpp_library)
 
     install(FILES ${CONFIG_HDR} DESTINATION "${config_install_path}")
   endforeach()
+
+  configure_file(${PROJECT_SOURCE_DIR}/../Config.cmake.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake @ONLY)
+  install(FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+          DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+  )
   #  - install library
   install(TARGETS ${ARG_NAME}
           EXPORT "${PROJECT_NAME}Targets"
           CXX_MODULES_BMI
           DESTINATION modules
           FILE_SET HEADERS
-          DESTINATION include
+          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
           FILE_SET CXX_MODULES
           DESTINATION modules
   )
   #  - install CMake configuration files
   install(EXPORT "${PROJECT_NAME}Targets"
           NAMESPACE "${PROJECT_NAME}::"
-          FILE "${PROJECT_NAME}Config.cmake"
+          FILE "${PROJECT_NAME}Targets.cmake"
           DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
           CXX_MODULES_DIRECTORY cxx_modules
   )
