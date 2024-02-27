@@ -14,13 +14,7 @@ After build, run the following to start an interactive shell in your container
     docker run -it setup-cpp-ubuntu
     ```
 
-Run the scripts inside the devcontainer:
-
-- `run_header_working.sh`
-- `run_module_failing.sh`
-- `run_module_working.sh`
-
-Or use the GNUmakefile:
+Or use the GNUmakefile outsite:
 
 ```bash
 make -n
